@@ -1,6 +1,21 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    // fetching data from json file
+    const navbarLinks = document.querySelectorAll('.nav-link');
+
+    // Add a click event listener to each link
+    navbarLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            // Remove the 'active' class from all links
+            navbarLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Add the 'active' class to the clicked link
+            link.classList.add('active');
+        });
+    });
+
+    //---------------------------------- fetching data from json file------------------------------//
     fetch('./data.json').then((data) => {
         return data.json();
     }).then((completedata) => {
@@ -34,8 +49,87 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log(err);
     });
 
+    // Function to toggle the heart icon color and update isLiked in JSON data
+    function toggleLike(card) {
+        // Get the heart icon element within the card
+        const heartIcon = card.querySelector(".liked");
 
-    // all, veg and nonveg button filters
+        // Find the index of the card within its parent
+        const index = Array.from(card.parentNode.children).indexOf(card);
+
+        // Find the corresponding recipe in your JSON data based on the index
+        const recipe = completedata[index];
+
+        if (recipe) {
+            // Toggle the color of the heart icon
+            if (recipe.isLiked) {
+                heartIcon.style.color = "#000000"; // Set to black
+            } else {
+                heartIcon.style.color = "#ff0000"; // Set to red
+            }
+
+            // Update the isLiked property in JSON data
+            recipe.isLiked = !recipe.isLiked;
+        }
+    }
+
+    // Add event listeners to all heart icons
+    const heartIcons = document.querySelectorAll(".liked");
+    heartIcons.forEach((heartIcon) => {
+        heartIcon.addEventListener("click", function () {
+            // Get the parent card element
+            const card = this.closest(".card");
+
+            // Toggle the heart icon color and update isLiked
+            toggleLike(card);
+        });
+    });
+
+
+    //---------------------------- Function to filter recipes by name ---------------------------//
+    function filterRecipesByName(searchQuery) {
+        // Get all recipe cards
+        const recipeCards = document.querySelectorAll(".card");
+
+        recipeCards.forEach((card) => {
+            const name = card.querySelector(".name").textContent.toLowerCase();
+            if (name.includes(searchQuery.toLowerCase())) {
+                card.style.display = "flex";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+
+    //------------------------------- Function to clear search results and display all cards------------------------------------------//
+    function clearSearchResults() {
+
+        document.getElementById("searchInput").value = "";
+
+        filterRecipesByName("");
+    }
+
+    //----------------------------- Add an event listener to the search button ---------------------------//
+    const searchBtn = document.getElementById("button-addon2");
+
+    searchBtn.addEventListener("click", function () {
+
+        const searchQuery = document.getElementById("searchInput").value.trim();
+
+        filterRecipesByName(searchQuery);
+    });
+
+    document.getElementById("searchInput").addEventListener("input", function () {
+
+        const searchQuery = this.value.trim();
+
+        if (searchQuery === "") {
+            clearSearchResults();
+        }
+    });
+
+
+    //------------------------------------- all, veg and nonveg button filters ----------------------------------------//
 
     const All = document.getElementById('all');
     const Veg = document.getElementById('veg');
@@ -49,7 +143,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Simulate a click on the "All" button when the page loads
     All.click();
 
     Veg.addEventListener("click", () => {
@@ -71,5 +164,42 @@ document.addEventListener('DOMContentLoaded', function () {
             card.style.display = show ? 'flex' : 'none';
         });
     });
+
+    //--------------------------------- Function to filter recipes by rating ------------------------------- //
+    function filterRecipesByRating(above4, below4) {
+
+        const recipeCards = document.querySelectorAll(".card");
+
+        recipeCards.forEach((card) => {
+            const rating = parseFloat(card.getAttribute("data-rating"));
+
+            if ((above4 && rating >= 4) || (below4 && rating < 4)) {
+                card.style.display = "flex";
+            } else if (!above4 && !below4) {
+                card.style.display = "flex";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+
+    document.getElementById("4andabove").addEventListener("change", function () {
+
+        const above4 = this.checked;
+
+        const below4 = document.getElementById("below4").checked;
+
+        filterRecipesByRating(above4, below4);
+    });
+
+    document.getElementById("below4").addEventListener("change", function () {
+
+        const above4 = document.getElementById("4andabove").checked;
+
+        const below4 = this.checked;
+
+        filterRecipesByRating(above4, below4);
+    });
+
 
 });

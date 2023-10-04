@@ -17,6 +17,28 @@ a{
     padding: 0;
 }
 
+.form-check-input:checked{
+    background-color: #509E2F;
+    border-color: #509E2F;
+    color: #ffffff;
+}
+
+.form-check-input:focus{
+    box-shadow: 0 0 0 0.25rem #509e2f4f;
+}
+
+.form-control:focus {
+    border-color: #509E2F;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #509e2f4f;
+}
+
+/* navbar css */
+
+.navbar-expand-lg .navbar-nav .nav-link{
+    color: #253D4E;
+}
+
 /* banner css */
 
 #banner{
@@ -46,6 +68,18 @@ a{
 
 #search-box > .search > input:focus{
     box-shadow: none;
+}
+
+#search-box > .search > .searchBtn{
+    width: 80px;
+    height: 65px;
+    border: none;
+    color: #fff;
+    background-color: #509E2F;
+}
+
+#search-box > .search > .searchBtn:hover{
+    background-color: #438d23;
 }
 
 #box{
@@ -111,6 +145,16 @@ a{
 .card-body > .del-time > .like-com button{
     border: none;
     background-color: transparent;
+}
+
+/* footer css */
+
+#footer h5{
+    color: #253D4E;
+}
+
+#footer a{
+    color: rgba(0, 0, 0, 0.60);
 }
 
 .socialicon{
