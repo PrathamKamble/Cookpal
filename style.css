@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+a{
+    text-decoration: none;
+}
+
+.main{
+    margin: 0 80px;
+}
+
+.container-fluid{
+    padding: 0;
+}
+
+/* banner css */
+
+#banner{
+    height: 380px;
+    border-radius: 30px;
+    background: linear-gradient(90deg, #252525 -16.65%, rgba(0, 0, 0, 0.00) 100%), url(./assets/banner.jpeg), lightgray 50%;
+    background-position: center;
+    background-size: cover;
+    padding: 5vw;
+    margin: 40px 0;
+}
+
+.content > p:first-child{
+    color: #DC582A;;
+}
+
+/* search box css */
+
+#search-box > .search{
+    background: #F3F3F3;
+}
+
+#search-box > .search > input{
+    background: transparent;
+    border: none;
+}
+
+#search-box > .search > input:focus{
+    box-shadow: none;
+}
+
+#box{
+    display: flex;
+    justify-content: space-between;
+}
+.sidebar {
+    width: 20%;
+}
+
+#recipeCards{
+    width: 75%;
+}
+
+/* CARDS CSS */
+
+.card{
+    width: 305px;
+    /* width: 415px; */
+    height: 350px;
+    /* height: 400px; */
+    flex-shrink: 0;
+    border-radius: 16px;
+    box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.05), 0px 0px 1px 0px rgba(12, 26, 75, 0.24);
+    border: none;
+}
+
+.card > img{
+    height: 200px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.card-body .type{
+    color: #A1A1A1;
+    font-size: 14px;
+    line-height: 24px; /* 240% */
+}
+
+.card-body > .recipe-info .name{
+    color: #252525;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.card-body > .recipe-info .rating{
+    color: #A1A1A1;
+}
+
+.card-body > .del-time .time{
+    color: #DC582A;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 136.523%;
+}
+
+.card-body > .del-time > .like-com span > i{
+    width: 22px;
+    height: 22px;
+}
+.card-body > .del-time > .like-com button{
+    border: none;
+    background-color: transparent;
+}
+
+.socialicon{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+
+  }
+
+  .socialicon > .icon1, .icon2, .icon3, .icon4, .icon5{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    font-size: 40px;
+  }
