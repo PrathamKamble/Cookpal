@@ -1,20 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    const navbarLinks = document.querySelectorAll('.nav-link');
-
-    // Add a click event listener to each link
-    navbarLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            // Remove the 'active' class from all links
-            navbarLinks.forEach(link => {
-                link.classList.remove('active');
-            });
-
-            // Add the 'active' class to the clicked link
-            link.classList.add('active');
-        });
-    });
-
     //---------------------------------- fetching data from json file------------------------------//
     fetch('./data.json').then((data) => {
         return data.json();
@@ -48,43 +33,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }).catch((err) => {
         console.log(err);
     });
-
-    // Function to toggle the heart icon color and update isLiked in JSON data
-    function toggleLike(card) {
-        // Get the heart icon element within the card
-        const heartIcon = card.querySelector(".liked");
-
-        // Find the index of the card within its parent
-        const index = Array.from(card.parentNode.children).indexOf(card);
-
-        // Find the corresponding recipe in your JSON data based on the index
-        const recipe = completedata[index];
-
-        if (recipe) {
-            // Toggle the color of the heart icon
-            if (recipe.isLiked) {
-                heartIcon.style.color = "#000000"; // Set to black
-            } else {
-                heartIcon.style.color = "#ff0000"; // Set to red
-            }
-
-            // Update the isLiked property in JSON data
-            recipe.isLiked = !recipe.isLiked;
-        }
-    }
-
-    // Add event listeners to all heart icons
-    const heartIcons = document.querySelectorAll(".liked");
-    heartIcons.forEach((heartIcon) => {
-        heartIcon.addEventListener("click", function () {
-            // Get the parent card element
-            const card = this.closest(".card");
-
-            // Toggle the heart icon color and update isLiked
-            toggleLike(card);
-        });
-    });
-
 
     //---------------------------- Function to filter recipes by name ---------------------------//
     function filterRecipesByName(searchQuery) {
