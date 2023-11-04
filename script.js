@@ -1,7 +1,13 @@
 function likefunc(e) {
-    // const isliked = e;
-    // console.log(e);
+    e = e.split(" ").join("_");
+    let result = document.getElementById(`${"like-button-" + e}`);
+    if (result.style.color == "black") {
+        result.style.color = "red";
+    } else {
+        result.style.color = "black";
+    }
 }
+
 document.addEventListener('DOMContentLoaded', function () {
 
     //---------------------------------- fetching data from json file------------------------------//
@@ -11,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
         let data1 = "";
         completedata.map((val) => {
             data1 += `<div class="card p-2" data-category="${val.type}" data-rating="${val.rating}">
-        <img src=${val.imageSrc} class="recipe-img" alt="img">
+                <img src=${val.imageSrc} class="recipe-img" alt="img">
                     <div class="card-body">
                         <span class="type">${val.type}</span>
 
@@ -24,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <h5 class="time">${val.time}</h5>
                             
                             <div class="like-com">
-                                <button id="likebtn" class="liked" onclick="likefunc('${val.isLiked}')"><i id="like-button" class="fa-regular fa-heart fa-lg like-btn" ></i></button>
+                                <button id="likebtn" class="liked" onclick="likefunc('${val.name}')"><i id="${`like-button-` + val.name.split(" ").join("_")}" class="fa-regular fa-heart fa-lg like-btn" style="color:black" ></i></button>
 
                                 <span class="comment"><i class="fa-regular fa-comment fa-lg" style="color: #000000;"></i></span>
                             </div>
@@ -52,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-    
+
     //------------------------------- Function to clear search results and display all cards------------------------------------------//
     function clearSearchResults() {
 
@@ -62,9 +68,17 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     //----------------------------- Add an event listener to the search button ---------------------------//
+    const searchBar = document.getElementById("searchInput");
+
+    searchBar.addEventListener("keyup", function () {
+        const searchQuery = document.getElementById("searchInput").value.trim();
+
+        filterRecipesByName(searchQuery);
+    });
+
     const searchBtn = document.getElementById("button-addon2");
 
-    searchBtn.addEventListener("click", function () {
+    searchBtn.addEventListener("keyup", function () {
 
         const searchQuery = document.getElementById("searchInput").value.trim();
 
