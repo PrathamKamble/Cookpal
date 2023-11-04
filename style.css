@@ -98,16 +98,21 @@ a{
 
 #recipeCards{
     width: 75%;
+    transition: all 0.5s ease-in-out;
 }
-
+.liked-fill{
+    color: tomato;
+}
+#like-button{
+    color:black
+}
 /* CARDS CSS */
 
 .card{
-    width: 305px;
-    /* width: 415px; */
-    height: 350px;
-    /* height: 400px; */
+    width: 290px;
+    height: 330px;
     flex-shrink: 0;
+    /* flex-grow: 1; */
     border-radius: 16px;
     box-shadow: 0px 3px 8px -1px rgba(50, 50, 71, 0.05), 0px 0px 1px 0px rgba(12, 26, 75, 0.24);
     border: none;
@@ -187,3 +192,74 @@ a{
     align-items: center;
     font-size: 40px;
   }
+
+  @media (max-width: 355.98px) {
+    .main {
+        margin: 0 15px !important;
+    }
+  } 
+
+  /* // `sm` applies to x-small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) { 
+    .main {
+        margin: 0 40px;
+    }
+
+    .card {
+        flex-grow: 1 !important;
+        height: 400px;
+    }
+
+    .card > img {
+        height: 253px;
+    }
+ }
+
+/* // `md` applies to small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) { 
+
+    .card {
+        width: 250px;
+        height: 400px;
+        flex-grow: 1 !important;
+    }
+
+    .card > img {
+        height: 253px;
+    }
+ }
+
+/* // `lg` applies to medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) { 
+    #box {
+        display: block;
+    }
+
+    .sidebar,
+    #recipeCards {
+        width: 100%;
+    }
+
+    .sidebar > .filter {
+        display: none;
+    }
+    
+    .card {
+        flex-grow: 1 !important;
+    }
+
+    .sidebar > .rating-filter > .filter-box {
+        display: flex;
+        gap: 20px;
+    }
+ }
+
+/* // `xl` applies to large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+    .card {
+        flex-grow: 0;
+    }
+ }
+
+/* // `xxl` applies to x-large devices (large desktops, less than 1400px) */
+@media (max-width: 1399.98px) { }

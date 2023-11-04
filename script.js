@@ -1,3 +1,7 @@
+function likefunc(e) {
+    // const isliked = e;
+    // console.log(e);
+}
 document.addEventListener('DOMContentLoaded', function () {
 
     //---------------------------------- fetching data from json file------------------------------//
@@ -20,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             <h5 class="time">${val.time}</h5>
                             
                             <div class="like-com">
-                                <button id="likebtn" class="liked"><i class="fa-regular fa-heart fa-lg" style="color: #000000;"></i></button>
+                                <button id="likebtn" class="liked" onclick="likefunc('${val.isLiked}')"><i id="like-button" class="fa-regular fa-heart fa-lg like-btn" ></i></button>
 
                                 <span class="comment"><i class="fa-regular fa-comment fa-lg" style="color: #000000;"></i></span>
                             </div>
@@ -48,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-
+    
     //------------------------------- Function to clear search results and display all cards------------------------------------------//
     function clearSearchResults() {
 
@@ -148,6 +152,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
         filterRecipesByRating(above4, below4);
     });
-
 
 });
