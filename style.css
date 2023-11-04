@@ -248,15 +248,10 @@ a{
         gap: 20px;
     }
 
-    .navbar-brand {
-        position: relative;
-        left: 16%;
-    }
-
     .user-profile-img{
         position: absolute;
         top: 25px;
-        left: 4%;
+        left: 75%;
     }
  }
 
